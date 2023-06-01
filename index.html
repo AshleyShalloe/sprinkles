@@ -331,11 +331,51 @@
         // )
     }
 
+    function resizeByZoom(){
+        var watch = document.getElementById("bezel")
+        
+        // viewport dimensions
+        var vWidth = window.innerWidth
+        var vHeight = window.innerHeight
+
+        // bezel dimensions
+        var bWidth = watch.offsetWidth
+        var bHeight = watch.offsetHeight
+
+        // scale factor
+        var widthScaleFactor
+        var heightScaleFactor
+        var finalScaleFactor
+
+        if (bWidth > vWidth){
+            // what would we need to multiply the offsetWidth by
+            // in order to get it to be 90% of the window width?
+            var targetWidth = 0.9 * vWidth
+            widthScaleFactor = targetWidth / bWidth
+        }
+        if (bHeight > vHeight){
+            var targetHeight = 0.9 * vHeight
+            heightScaleFactor = targetHeight / bHeight
+        }
+
+        if (widthScaleFactor || heightScaleFactor){
+            finalScaleFactor = widthScaleFactor > heightScaleFactor ? heightScaleFactor : widthScaleFactor
+        }
+        else{
+            finalScaleFactor = 1
+        }
+
+        document.getElementsByTagName("body")[0].style.transform = `scale(${finalScaleFactor})`
+        document.getElementsByTagName("body")[0].style.height = `${vHeight}px`
+    }
+
     function init() {
         addPaletteToRoot();
         addSprinkles(5);
         offsetSprinkleWiggle();
         startTheClock();
+        addEventListener('resize', (event) => {resizeByZoom()});
+        resizeByZoom();
 
     }
 
