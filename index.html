@@ -2,7 +2,7 @@
 
 <head>
     <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=no, maximum-scale=1">
-    <meta charset="UTF-8"/>
+    <meta charset="UTF-8" />
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <style>
@@ -82,7 +82,7 @@
             border: 20px solid black;
         }
 
-        #bezel{
+        #bezel {
             border: 20px solid white;
             border-radius: 165px;
             z-index: -20000;
@@ -177,26 +177,26 @@
 
 <body>
     <div id="bezel">
-    <div id="watchface">
-        <div id="sprinkleContainer" class="spin"></div>
-        <div id="clocktainer">
-            <!-- <div id="miliseconds" class="dial" style="z-index: 100;">
+        <div id="watchface">
+            <div id="sprinkleContainer" class="spin"></div>
+            <div id="clocktainer">
+                <!-- <div id="miliseconds" class="dial" style="z-index: 100;">
                 <div class="hand"></div>
             </div> -->
-            <div id="seconds" class="dial" style="z-index: 800;">
-                <div class="hand"></div>
+                <div id="seconds" class="dial" style="z-index: 800;">
+                    <div class="hand"></div>
+                </div>
+                <div id="minutes" class="dial" style="z-index: -100;">
+                    <div class="hand"></div>
+                </div>
+                <div id="hours" class="dial" style="z-index: -1000;">
+                    <div class="hand"></div>
+                </div>
+                <div id="segmentContainer">
+                </div>
+                <div id="centreDot"></div>
             </div>
-            <div id="minutes" class="dial" style="z-index: -100;">
-                <div class="hand"></div>
-            </div>
-            <div id="hours" class="dial" style="z-index: -1000;">
-                <div class="hand"></div>
-            </div>
-            <div id="segmentContainer">
-            </div>
-            <div id="centreDot"></div>
         </div>
-    </div>
     </div>
 
 
@@ -252,13 +252,14 @@
             }
         }
     }
-    
-    function offsetSprinkleWiggle(){
+
+    function offsetSprinkleWiggle() {
         `
         Staggers the animation delay, causing sprinkles to wiggle out of sync
         `
-        for (var i=0; i<document.getElementsByClassName("wiggle").length; i++){
-            document.getElementsByClassName("wiggle")[i].style.animationDelay = `${(0.1*i)}s`
+        for (var i = 0; i < document.getElementsByClassName("wiggle").length; i++) {
+            document.getElementsByClassName("wiggle")[i].style.animationDelay = `${(0.1 * i)%0.5}s`
+        }
     }
 
     // clock stuff
