@@ -252,6 +252,14 @@
             }
         }
     }
+    
+    function offsetSprinkleWiggle(){
+        `
+        Staggers the animation delay, causing sprinkles to wiggle out of sync
+        `
+        for (var i=0; i<document.getElementsByClassName("wiggle").length; i++){
+            document.getElementsByClassName("wiggle")[i].style.animationDelay = `${(0.1*i)}s`
+    }
 
     // clock stuff
     function setMilisecondsDialAngle(angleInDegrees) {
@@ -325,6 +333,7 @@
     function init() {
         addPaletteToRoot();
         addSprinkles(5);
+        offsetSprinkleWiggle();
         startTheClock();
 
     }
